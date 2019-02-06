@@ -33,7 +33,7 @@ module.exports = helperUtils.declare((api, options) => {
 
   const THROW_IF_NAMESPACE = (options.throwIfNamespace === undefined) ? true : !!options.throwIfNamespace,
         PRAGMA_DEFAULT = options.pragma || "this._raCreateElement,React.createElement",
-        PRAGMA_FRAG_DEFAULT = options.pragmaFrag || "this._reCreateFragmentElement,React.Fragment",
+        PRAGMA_FRAG_DEFAULT = options.pragmaFrag || "React.Fragment",
         JSX_ANNOTATION_REGEX = /\*?\s*@jsx\s+([^\s]+)/,
         JSX_FRAG_ANNOTATION_REGEX = /\*?\s*@jsxFrag\s+([^\s]+)/;
 
