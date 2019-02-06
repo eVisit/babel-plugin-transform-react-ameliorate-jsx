@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`babel-preset-react-ameliorate should work with custom options 1`] = `
+"function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+import React from 'react';
+
+class MyTestComponent extends React.Component {
+  render() {
+    return (_customCreateElement || React.createElement)(_customCreateFragmentElement || React.Fragment, null, (_customCreateElement || React.createElement)(View, _extends({
+      hello: true
+    }, opts), (_customCreateElement || React.createElement)(React.Fragment, null, (_customCreateElement || React.createElement)(Text, {
+      stuff: true
+    }, \\"Hello world!\\"), (_customCreateElement || React.createElement)(\\"div\\", null, (_customCreateElement || React.createElement)(\\"span\\", null, \\"Cool beans\\")))));
+  }
+
+}"
+`;
+
+exports[`babel-preset-react-ameliorate should work with default options 1`] = `
+"function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+import React from 'react';
+
+class MyTestComponent extends React.Component {
+  render() {
+    return (this._raCreateElement || React.createElement)(View, _extends({
+      hello: true
+    }, opts), (this._raCreateElement || React.createElement)(React.Fragment, null, (this._raCreateElement || React.createElement)(Text, {
+      stuff: true
+    }, \\"Hello world!\\"), (this._raCreateElement || React.createElement)(\\"div\\", null, (this._raCreateElement || React.createElement)(\\"span\\", null, \\"Cool beans\\"))));
+  }
+
+}"
+`;
+
+exports[`babel-preset-react-ameliorate should work with inline options 1`] = `
+"function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+/** @jsx dom1,dom2 */
+
+/** @jsxFrag DomFrag1,DomFrag2 */
+import React from 'react';
+
+class MyTestComponent extends React.Component {
+  render() {
+    return (dom1 || dom2)(DomFrag1 || DomFrag2, null, (dom1 || dom2)(View, _extends({
+      hello: true
+    }, opts), (dom1 || dom2)(React.Fragment, null, (dom1 || dom2)(Text, {
+      stuff: true
+    }, \\"Hello world!\\"), (dom1 || dom2)(\\"div\\", null, (dom1 || dom2)(\\"span\\", null, \\"Cool beans\\")))));
+  }
+
+}"
+`;
