@@ -32,15 +32,15 @@ module.exports = helperUtils.declare((api, options) => {
   api.assertVersion(7);
 
   const THROW_IF_NAMESPACE = (options.throwIfNamespace === undefined) ? true : !!options.throwIfNamespace,
-        PRAGMA_DEFAULT = options.pragma || "this._raCreateElement,React.createElement",
-        PRAGMA_FRAG_DEFAULT = options.pragmaFrag || "React.Fragment",
+        PRAGMA_DEFAULT = (options.pragma || "this._raCreateElement,React.createElement").trim(),
+        PRAGMA_FRAG_DEFAULT = (options.pragmaFrag || "React.Fragment").trim(),
         JSX_ANNOTATION_REGEX = /\*?\s*@jsx\s+([^\s]+)/,
         JSX_FRAG_ANNOTATION_REGEX = /\*?\s*@jsxFrag\s+([^\s]+)/;
 
   // returns a closure that returns an identifier or memberExpression node
   // based on the given id
   const createIdentifierParser = (_id) => {
-    const createMemberExpression = (thisID) => {
+    const createMemberExpressionSub = (thisID) => {
       return thisID
         .split(".")
         .map((name) => babelTypes.identifier(name))
@@ -49,7 +49,16 @@ module.exports = helperUtils.declare((api, options) => {
         });
     };
 
-    var ids = ('' + _id).trim().split(/\s*,\s*/);
+    const createMemberExpression = (thisID) => {
+      var memberExpression = createMemberExpressionSub(thisID);
+      if (thisID.substring(0, 5) === 'this.') {
+        return babelTypes.logicalExpression('&&', babelTypes.thisExpression(), memberExpression);
+      } else {
+        return memberExpression;
+      }
+    };
+
+    var ids = ('' + _id).split(/\s*,\s*/);
 
     return () => {
       var previousExpression = createMemberExpression(ids[0]);

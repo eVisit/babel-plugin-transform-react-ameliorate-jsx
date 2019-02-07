@@ -24,11 +24,11 @@ import React from 'react';
 
 class MyTestComponent extends React.Component {
   render() {
-    return (this._raCreateElement || React.createElement)(React.Fragment, null, (this._raCreateElement || React.createElement)(View, _extends({
+    return (this && this._raCreateElement || React.createElement)(React.Fragment, null, (this && this._raCreateElement || React.createElement)(View, _extends({
       hello: true
-    }, opts), (this._raCreateElement || React.createElement)(React.Fragment, null, (this._raCreateElement || React.createElement)(Text, {
+    }, opts), (this && this._raCreateElement || React.createElement)(React.Fragment, null, (this && this._raCreateElement || React.createElement)(Text, {
       stuff: true
-    }, \\"Hello world!\\"), (this._raCreateElement || React.createElement)(\\"div\\", null, (this._raCreateElement || React.createElement)(\\"span\\", null, \\"Cool beans\\")))));
+    }, \\"Hello world!\\"), (this && this._raCreateElement || React.createElement)(\\"div\\", null, (this && this._raCreateElement || React.createElement)(\\"span\\", null, \\"Cool beans\\")))));
   }
 
 }"
